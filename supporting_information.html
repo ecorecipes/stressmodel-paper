@@ -2356,6 +2356,9 @@ window.Quarto = {
   <li><a href="#appendix-s2.-verification" id="toc-appendix-s2.-verification" class="nav-link" data-scroll-target="#appendix-s2.-verification">Appendix S2. Verification</a></li>
   <li><a href="#appendix-s3.-supplementary-results" id="toc-appendix-s3.-supplementary-results" class="nav-link" data-scroll-target="#appendix-s3.-supplementary-results">Appendix S3. Supplementary results</a></li>
   <li><a href="#appendix-s4.-group-size-and-the-contender-contrast" id="toc-appendix-s4.-group-size-and-the-contender-contrast" class="nav-link" data-scroll-target="#appendix-s4.-group-size-and-the-contender-contrast">Appendix S4. Group size and the contender contrast</a></li>
+  <li><a href="#appendix-s5.-individual-differences-in-fighting-ability-and-affiliation" id="toc-appendix-s5.-individual-differences-in-fighting-ability-and-affiliation" class="nav-link" data-scroll-target="#appendix-s5.-individual-differences-in-fighting-ability-and-affiliation">Appendix S5. Individual differences in fighting ability and affiliation</a></li>
+  <li><a href="#appendix-s6.-candidate-mechanisms-for-the-patterns-not-reproduced" id="toc-appendix-s6.-candidate-mechanisms-for-the-patterns-not-reproduced" class="nav-link" data-scroll-target="#appendix-s6.-candidate-mechanisms-for-the-patterns-not-reproduced">Appendix S6. Candidate mechanisms for the patterns not reproduced</a></li>
+  <li><a href="#appendix-s7.-post-hoc-tests-of-explanations" id="toc-appendix-s7.-post-hoc-tests-of-explanations" class="nav-link" data-scroll-target="#appendix-s7.-post-hoc-tests-of-explanations">Appendix S7. Post hoc tests of explanations</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="supporting_information.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="supporting_information.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
@@ -2969,6 +2972,9 @@ window.Quarto = {
 <li><em>Random turnover.</em> At group rate <span class="math inline">\(\xi\)</span> [shocks], a uniformly chosen individual is replaced by a naive newcomer. The newcomer gets the initial state, the prior beliefs and, under P4, zero critic weights. Every other individual’s records about that slot are erased. Any asset it held becomes free, and an ongoing interaction ends for its partner.</li>
 <li><em>Targeted removal.</em> This is a declared experimenter intervention. At <code>removal_time</code>, the individual with the highest David’s score is replaced in the same way. The score is computed analyst-side from the dominance records of the preceding 500 time units, and ties are broken on the shocks stream. It is not an agent rule, and the score it uses enters no behavioural, belief or physiological equation.</li>
 </ul>
+<p><strong>Individual traits</strong> (off by default; Appendix S5). Each individual draws <span class="math inline">\(z_1, z_2 \sim N(0,1)\)</span> on entry [traits]. - Fighting ability <span class="math inline">\(g_i = \sigma_F z_1\)</span> adds <span class="math inline">\(g_i - g_j\)</span> to the logit of <span class="math inline">\(P_{ij}\)</span>. - Affiliative motivation <span class="math inline">\(h_i = \sigma_S(r z_1 + \sqrt{1 - r^2}\,z_2)\)</span> replaces <span class="math inline">\(s_G\)</span> in the individual’s own grooming values by <span class="math inline">\(s_G e^{h_i - \sigma_S^2/2}\)</span>. - No individual observes any trait, its own fighting ability included. Neither trait enters physiology.</p>
+<p><strong>Rival-proximity vigilance</strong> (off by default; Appendix S6). An idle consort holder receives a threat jump <span class="math inline">\(q_V\)</span> each time an eligible rival (in season, not consorting) encounters it, unless that rival’s chosen action targets the holder.</p>
+<p><strong>Rank insecurity</strong> (off by default; Appendix S6). A continuous threat input <span class="math inline">\(u_I = \beta_I\,\mathcal U_i\)</span>, where <span class="math inline">\(\mathcal U_i\)</span> is the mean of <span class="math inline">\(4\hat p_{ij}(1 - \hat p_{ij})\)</span> over co-present partners with direct evidence <span class="math inline">\(n_{ij} \ge n_U\)</span>. It is computed from the individual’s own forecasts at each event touching it.</p>
 <p><strong>Two-way coupling</strong> (off by default; enabled one at a time). With all four mechanisms off, coupling is one-way: load cannot affect choices, effort or contest outcomes.</p>
 <ul>
 <li><strong>F1, private burden cost</strong> (P4 only). At each TD step, <span class="math inline">\(R \mathrel{-}= w_A\tilde a\)</span>. Here <span class="math inline">\(\tilde a = \left(\int z\,dt\right)\exp(\sigma_a\epsilon - \sigma_a^2/2)\)</span>, the integral is taken over the inter-decision interval, and <span class="math inline">\(\epsilon \sim N(0,1)\)</span> is drawn on the observation stream. F1 has no channel into P2 or P3.</li>
@@ -3844,6 +3850,14 @@ window.Quarto = {
 <td>S12</td>
 <td>Exact enumeration of expected Landau <span class="math inline">\(h\)</span> and the cyclic-triad distribution for small <span class="math inline">\(N\)</span></td>
 </tr>
+<tr class="odd">
+<td>S13</td>
+<td>Individual traits: lognormal mean correction; the logit-additive ability term equals Tullock strength <span class="math inline">\(c_i e^{g_i}\)</span>; trait covariance <span class="math inline">\(r\sigma_F\sigma_S\)</span></td>
+</tr>
+<tr class="even">
+<td>S14</td>
+<td>Insecurity term <span class="math inline">\(4p(1-p) \le 1\)</span> with maximum at <span class="math inline">\(\tfrac12\)</span>; steady excess load of a constant insecurity input</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Table S3.</strong> Machine-checked proofs (Lean 4 with Mathlib <span class="citation" data-cites="mathlib2020">(<a href="#ref-mathlib2020" role="doc-biblioref">The mathlib Community 2020</a>)</span>; <code>lean/AllostaticHierarchy/</code>). The build contains no unproved statement (<code>sorry</code>).</p>
@@ -3931,9 +3945,20 @@ window.Quarto = {
 <td><code>reserve_le_one</code>, <code>reserve_nonneg</code>, <code>f4_reserve_invariant</code></td>
 <td>the functional reserve of F4 stays in <span class="math inline">\([0,1]\)</span></td>
 </tr>
+<tr class="odd">
+<td>L15</td>
+<td><code>half_le_csf_iff</code>, <code>csf_strong_transitive</code></td>
+<td>contests decided by fixed abilities are strongly stochastically transitive, so an order produced by ability alone is transitive by construction</td>
+</tr>
+<tr class="even">
+<td>L16</td>
+<td><code>insecurity_term_bounds</code>, <code>insecurity_input_bounds</code></td>
+<td>the insecurity input lies in <span class="math inline">\([0, \beta_I]\)</span>, so the invariant domain of L1 is preserved</td>
+</tr>
 </tbody>
 </table>
-<p><strong>Automated tests (Julia).</strong> 13,744 tests in eleven groups: random-stream independence and reproducibility; package quality (Aqua); agreement with the generated symbolic references; physiology (analytic tests and comparison with an independent ODE solver with jump callbacks); the game (ledger identity after every event, feasibility, invariants, controls); exposure (exact decomposition of load into channels, and a test that load never reaches decisions under one-way coupling); structure analysis; rank–load and profile-shape rules; two-way coupling; sensitivity estimators; and the stage-game benchmark.</p>
+<p><strong>Automated tests (Julia).</strong> 15,090 tests in thirteen groups: random-stream independence and reproducibility; package quality (Aqua); agreement with the generated symbolic references; physiology (analytic tests and comparison with an independent ODE solver with jump callbacks); the game (ledger identity after every event, feasibility, invariants, controls); exposure (exact decomposition of load into channels, and a test that load never reaches decisions under one-way coupling); structure analysis; rank–load and profile-shape rules; two-way coupling; sensitivity estimators; the stage-game benchmark; individual traits; and the vigilance and insecurity inputs.</p>
+<p>For the trait, vigilance and insecurity extensions, the full set of earlier wildlife scenarios was re-run with the extensions switched off. Every recorded output was bit-identical to the original runs.</p>
 </section>
 <section id="appendix-s3.-supplementary-results" class="level1">
 <h1>Appendix S3. Supplementary results</h1>
@@ -4158,6 +4183,143 @@ window.Quarto = {
 </tbody>
 </table>
 <p>At the 31 base-B scan points with at least 5 ordered groups (post hoc), <span class="math inline">\(\kappa\)</span> exceeded 0.9 at all 19 points with three patches of richness <span class="math inline">\(\rho_c \ge 4\)</span>. These include the channel ablations, support and coupling variants of that cell. <span class="math inline">\(\kappa\)</span> was at most 0.57 at the 12 points with poor patches (<span class="math inline">\(\rho_c \le 2\)</span>) or in the matched-supply design of patch number and escape. The contender peak therefore requires several rich, contestable patches without scarcity.</p>
+</section>
+<section id="appendix-s5.-individual-differences-in-fighting-ability-and-affiliation" class="level1">
+<h1>Appendix S5. Individual differences in fighting ability and affiliation</h1>
+<p><strong>Design</strong> (declared before the runs; 40 groups per point; common random numbers, so a replicate has the same trait ranks at every spread). - <strong>Part A:</strong> fighting-ability spread <span class="math inline">\(\sigma_F \in \{0, 0.25, 0.5, 1, 2\}\)</span> in five cells: - GW0 (scenario W0); - GZ (W0 with <span class="math inline">\(\zeta = 0\)</span>); - GW4 (W4); - GW3b (W3b, <span class="math inline">\(N = 6\)</span>); - GK18 (K18, <span class="math inline">\(N = 20\)</span>). - <strong>Part B:</strong> affiliative-motivation spread <span class="math inline">\(\sigma_S \in \{0, 0.5, 1\}\)</span>, alone and with <span class="math inline">\(\sigma_F = 1\)</span> at <span class="math inline">\(r \in \{-0.5, 0, 0.5\}\)</span>. Cells are S2 (W2 with <span class="math inline">\(s_G = 0.02\)</span>) and S2ns (S2 with support off). - <strong>Statistics:</strong> <span class="math inline">\(\rho_F\)</span> and <span class="math inline">\(\rho_S\)</span> are Spearman correlations of the trait with David’s score in each group’s first ordered window. <span class="math inline">\(\beta\)</span> coefficients come from a within-group regression of standardized load on standardized rank position and the traits.</p>
+<p><strong>Table S6.</strong> Fighting ability (Part A). Means with 95% bootstrap intervals over ordered groups.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cell</th>
+<th><span class="math inline">\(\sigma_F\)</span></th>
+<th>Ordered /40</th>
+<th><span class="math inline">\(\rho_F\)</span></th>
+<th><span class="math inline">\(\beta_F\)</span></th>
+<th><span class="math inline">\(\kappa\)</span></th>
+<th>Shape (thirds rule)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GZ</td>
+<td>0 / 0.5 / 2</td>
+<td>0 / 16 / 40</td>
+<td>– / 0.87 / 0.96 (0.95, 0.97)</td>
+<td>– / −0.17 / −0.61 (−0.73, −0.50)</td>
+<td>–</td>
+<td>– / subordinate-high / subordinate-high, alpha trough</td>
+</tr>
+<tr class="even">
+<td>GW0</td>
+<td>0 / 0.25 / 1 / 2</td>
+<td>40 / 40 / 40 / 40</td>
+<td>– / 0.69 / 0.91 / 0.93</td>
+<td>– / −0.05 / −0.25 / −0.41 (−0.53, −0.27)</td>
+<td>−1.49 / −1.69 / −1.71 / −1.75</td>
+<td>subordinate-high at every level</td>
+</tr>
+<tr class="odd">
+<td>GW4</td>
+<td>0 / 2</td>
+<td>40 / 40</td>
+<td>– / 0.95</td>
+<td>– / −0.57 (−0.87, −0.22)</td>
+<td>−0.19 / −1.06</td>
+<td>inverted U, alpha trough (both)</td>
+</tr>
+<tr class="even">
+<td>GW3b</td>
+<td>0 / 2</td>
+<td>28 / 39</td>
+<td>– / 0.93</td>
+<td>– / −0.58 (−1.01, −0.08)</td>
+<td>1.37 / 1.25</td>
+<td>inverted U, alpha trough (both)</td>
+</tr>
+<tr class="odd">
+<td>GK18</td>
+<td>0 / 1 / 2</td>
+<td>40 / 37 / 31</td>
+<td>– / 0.68 / 0.77</td>
+<td>– / −0.22 / −0.28 (−0.36, −0.20)</td>
+<td>1.18 / 1.06 / 0.71 (0.40, 1.02)</td>
+<td>dominant-high → flat, alpha trough</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table S7.</strong> Affiliative motivation (Part B; <span class="math inline">\(\sigma_S = 1\)</span> unless stated).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Point</th>
+<th><span class="math inline">\(\rho\)</span>(motivation, grooming received)</th>
+<th><span class="math inline">\(\rho_S\)</span></th>
+<th><span class="math inline">\(\beta_S\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S2, <span class="math inline">\(\sigma_F = 0\)</span></td>
+<td>0.54 (0.46, 0.63)</td>
+<td>−0.37 (−0.45, −0.29)</td>
+<td>−0.12 (−0.21, −0.02)</td>
+</tr>
+<tr class="even">
+<td>S2ns (support off), <span class="math inline">\(\sigma_F = 0\)</span></td>
+<td>0.54</td>
+<td>−0.37</td>
+<td>−0.12 (−0.22, −0.03)</td>
+</tr>
+<tr class="odd">
+<td>S2, <span class="math inline">\(\sigma_F = 1\)</span>, <span class="math inline">\(r = -0.5\)</span> / 0 / 0.5</td>
+<td>0.60 / 0.67 / 0.75</td>
+<td>−0.53 / −0.23 / 0.22</td>
+<td>−0.15 / −0.12 / −0.17</td>
+</tr>
+</tbody>
+</table>
+<p>Of 11 predictions, 9 held. Two failed: - unpredictability rose rather than fell with ability spread in GZ; - <span class="math inline">\(\kappa\)</span> did not fall in GW3b.</p>
+<p>The full tables are in <code>reports/E16g_results.md</code> of the archived repository.</p>
+</section>
+<section id="appendix-s6.-candidate-mechanisms-for-the-patterns-not-reproduced" class="level1">
+<h1>Appendix S6. Candidate mechanisms for the patterns not reproduced</h1>
+<p><strong>Design</strong> (mechanisms chosen and predictions declared before the runs; 40 groups per point). - <strong>T0</strong> (no new mechanism): mating utility <span class="math inline">\(\in \{0.1, 0.5, 2\}\)</span> × winner preference <span class="math inline">\(\chi \in \{0, 1\}\)</span>, in W5a and W7. - <strong>T2:</strong> vigilance <span class="math inline">\(q_V \in \{0, 0.07, 0.14, 0.28\}\)</span> in W5a, W7 and W5c. The grid was scaled by a declared pilot of the rate at which consorts meet rivals (1.4 per unit time). - <strong>I1:</strong> insecurity gain <span class="math inline">\(\beta_I \in \{0, 0.1, 0.3\}\)</span> in W0, W6a, W6b and W3b. - Both new inputs change physiology only, so behaviour is identical across their gain levels. - <strong>J-shape rule:</strong> an <span class="math inline">\(\alpha_c\)</span> interval above 0.5, and the alpha’s standardized load above the bottom third’s mean.</p>
+<p><strong>Results.</strong> - <strong>T0:</strong> the J-shape rule was met at none of the 12 points. - <strong>T2:</strong> - In W5a and W7 the top-ranked individual held the consortship only 3–12% of consort time, and vigilance deepened the alpha trough. - In W5c the top held it 48% of the time and <span class="math inline">\(\alpha_c\)</span> rose from −2.31 to −2.05 over the declared grid. - An exploratory run outside the grid (same seeds) met the J-shape rule at <span class="math inline">\(q_V = 3\)</span> (<span class="math inline">\(\alpha_c = 1.92\)</span>, 1.52–2.29) but not at <span class="math inline">\(q_V = 1\)</span>. - <strong>I1:</strong> - The insecurity input was nearly uniform across ranks: 0.18 for the alpha against 0.21 for the others at <span class="math inline">\(\beta_I = 0.3\)</span>. - It did not strengthen the contender peak. - After the alpha’s removal, mean load was lower in window 2 than in window 1 in 24 of 40 groups at every <span class="math inline">\(\beta_I\)</span>, so the instability rule was not met.</p>
+<p>The full tables are in <code>reports/E16_results.md</code>.</p>
+</section>
+<section id="appendix-s7.-post-hoc-tests-of-explanations" class="level1">
+<h1>Appendix S7. Post hoc tests of explanations</h1>
+<p>Each explanation offered for a model pattern was tested, together with its corollaries, in exploratory runs after the results. Explanations that could not be tested were removed. The tests are listed in <code>reports/explanation_checks.md</code>. Those used in the main text:</p>
+<ul>
+<li><strong>H8, the low-load alpha.</strong> In W5a and W9c (20 groups each), compared with ranks 2–3, the top individual:
+<ul>
+<li>fought less;</li>
+<li>received less defeat and intimidation input (W5a: 0.04 against 0.11 per unit time);</li>
+<li>spent less contest effort;</li>
+<li>received far more yields than it gave (0.34 against 0.04).</li>
+</ul></li>
+<li><strong>H9, the contender peak.</strong> In W3b, ranks 2–3 fought most (0.112 per unit time, against 0.100 for the alpha and 0.042 for the rest), and forecasts within the top four were least settled (<span class="math inline">\(|\hat p - \tfrac12| = 0.20\)</span> against 0.28). Less-settled forecasts among the top four also occurred in W0, which has no contender peak, so this corollary is not specific to it.</li>
+<li><strong>H1, who holds the mate.</strong> In W5a the top individual held food patches 61% of the time (others 16%). Making patches poorer raised its share of consort time from 0.07 to 0.17 and 0.33. A higher mating value did not.</li>
+<li><strong>H5, support.</strong> Support scaled every individual’s load nearly in proportion: profile correlation 0.996 with and without support.</li>
+<li><strong>H6, sociability and energy.</strong> About half of the association between motivation and low rank ran through lower energy.</li>
+<li><strong>H7, forecasts.</strong> Individuals’ forecasts tracked fight outcomes in W3b (median difference −0.01). Dominance records including yields were more one-sided (0.84 against 0.67).</li>
+</ul>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
